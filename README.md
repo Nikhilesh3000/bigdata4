@@ -11,16 +11,11 @@ plot(iris_ctree)
 
 5 Implement SVM classification techniques
 Code-
-# Importing the dataset
+
 dataset = read.csv(' E:/NIKHILESH/social.csv')
 
-# Selecting relevant columns: Age, EstimatedSalary, Purchased
 dataset = dataset[3:5]
-
-# Encoding the target feature as factor
 dataset$Purchased = factor(dataset$Purchased, levels = c(0, 1))
-
-# Splitting the dataset into the Training set and Test set
 install.packages('caTools')  # Run only once
 library(caTools)
 set.seed(123)
@@ -28,11 +23,11 @@ split = sample.split(dataset$Purchased, SplitRatio = 0.75)
 training_set = subset(dataset, split == TRUE)
 test_set = subset(dataset, split == FALSE)
 
-# Feature Scaling
+
 training_set[-3] = scale(training_set[-3])
 test_set[-3] = scale(test_set[-3])
 
-# Fitting SVM to the Training set
+
 install.packages('e1071')  # Run only once
 library(e1071)
 classifier = svm(formula = Purchased ~ .,
@@ -40,19 +35,19 @@ classifier = svm(formula = Purchased ~ .,
                  type = 'C-classification',
                  kernel = 'linear')
 
-# Predicting the Test set results
+
 y_pred = predict(classifier, newdata = test_set[-3])
 
-# Making the Confusion Matrix
+
 cm = table(test_set[, 3], y_pred)
 print("Confusion Matrix:")
 print(cm)
 
-# Visualising the Training set results
+
 install.packages("ElemStatLearn")  # Run only once
 library(ElemStatLearn)
 
-# Plotting function (for training and test sets)
+
 plot_svm <- function(set, title) {
   X1 = seq(min(set[, 1]) - 1, max(set[, 1]) + 1, by = 0.01)
   X2 = seq(min(set[, 2]) - 1, max(set[, 2]) + 1, by = 0.01)
@@ -71,77 +66,69 @@ plot_svm <- function(set, title) {
 plot_svm(training_set, 'SVM Classification (Training set)')
 
 
+
 6 Linear regression practical 
 code-
-# Load dataset
+
 college <- read.csv("https://raw.githubusercontent.com/ropensci/datapack/main/inst/extdata/pkg-example/binary.csv")
 head(college)
 nrow(college)
 
-# Install and load caTools
+
 install.packages("caTools")  # Run only once
 library(caTools)
 
-# Split dataset
+
 set.seed(123)
 split <- sample.split(college$admit, SplitRatio = 0.75)
 training_reg <- subset(college, split == TRUE)
 test_reg <- subset(college, split == FALSE)
 
-# Fit logistic regression model
+
 fit_logistic_model <- glm(admit ~ ., data = training_reg, family = "binomial")
 
-# View coefficients
+
 coef(fit_logistic_model)["gre"]
 coef(fit_logistic_model)["gpa"]
 coef(fit_logistic_model)["rank"]
 
-# Predict probabilities on test data
+
 predict_reg <- predict(fit_logistic_model, newdata = test_reg, type = "response")
 
-# Plot Conditional Density
+
 cdplot(as.factor(admit) ~ gpa, data = college)
 cdplot(as.factor(admit) ~ gre, data = college)
 cdplot(as.factor(admit) ~ rank, data = college)
 
-# Convert probabilities to binary predictions
 predict_binary <- ifelse(predict_reg > 0.5, 1, 0)
-
-# Confusion Matrix
 table(Actual = test_reg$admit, Predicted = predict_binary)
 output
 
 
 7 Code-
 Explain Multiple regression in detail.
-# Load dataset
 college <- read.csv("https://raw.githubusercontent.com/csquared/udacity-dlnd/master/nn/binary.csv")
 head(college)
 nrow(college)
 
-# Install and load caTools (only run install once)
 install.packages("caTools")  # Only the first time
 library(caTools)
 
-# Data splitting
 set.seed(123)
 split <- sample.split(college$admit, SplitRatio = 0.75)
 training_reg <- subset(college, split == TRUE)
 test_reg <- subset(college, split == FALSE)
-# Fit logistic regression model
+
 fit_MRegressor_model <- glm(formula = admit ~ gre + gpa + rank, data = training_reg, family = binomial)
-# Predict probabilities on test set
+
 predict_reg <- predict(fit_MRegressor_model, newdata = test_reg, type = "response")
 head(predict_reg)
-# Classify predictions (threshold = 0.5)
 predict_class <- ifelse(predict_reg > 0.5, 1, 0)
 
-# Plot conditional density plots
 cdplot(as.factor(admit) ~ gpa, data = college)
 cdplot(as.factor(admit) ~ gre, data = college)
 cdplot(as.factor(admit) ~ rank, data = college)
 
-# Confusion matrix
 table(Actual = test_reg$admit, Predicted = predict_class)
 
 
@@ -256,6 +243,4 @@ summary(itemsets)
 inspect(itemsets)
 itemsets_3 = apriori(Groceries, parameter = list(minlen=3, maxlen=3,support=0.02, target="frequent itemsets"))
 summary(itemsets_3)
-
-
 inspect(itemsets_3)
