@@ -62,7 +62,6 @@ plot_svm <- function(set, title) {
   points(grid_set, pch = '.', col = ifelse(y_grid == 1, 'springgreen3', 'tomato'))
   points(set, pch = 21, bg = ifelse(set[, 3] == 1, 'green4', 'red3'))
 }
-# Plot training and test results
 plot_svm(training_set, 'SVM Classification (Training set)')
 
 
