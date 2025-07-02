@@ -1,4 +1,4 @@
-4 Implement Decision tree classification techniques 
+#4 Implement Decision tree classification techniques 
 
 Code-
 library("party")
@@ -9,7 +9,7 @@ print (iris_ctree)
 plot(iris_ctree)
 
 
-5 Implement SVM classification techniques
+#5 Implement SVM classification techniques
 Code-
 
 dataset = read.csv(' E:/NIKHILESH/social.csv')
@@ -67,7 +67,7 @@ plot_svm(training_set, 'SVM Classification (Training set)')
 
 
 
-6 Linear regression practical 
+#6 Linear regression practical 
 code-
 
 college <- read.csv("https://raw.githubusercontent.com/ropensci/datapack/main/inst/extdata/pkg-example/binary.csv")
@@ -105,7 +105,7 @@ table(Actual = test_reg$admit, Predicted = predict_binary)
 output
 
 
-7 Code-
+#7 Code-
 Explain Multiple regression in detail.
 college <- read.csv("https://raw.githubusercontent.com/csquared/udacity-dlnd/master/nn/binary.csv")
 head(college)
@@ -132,7 +132,7 @@ cdplot(as.factor(admit) ~ rank, data = college)
 table(Actual = test_reg$admit, Predicted = predict_class)
 
 
-8 CLASSIFICATION MODEL a. Install relevant package for classification. b. Choose classifier for classification problem. c. Evaluate the performance of classifier. 
+#8 CLASSIFICATION MODEL a. Install relevant package for classification. b. Choose classifier for classification problem. c. Evaluate the performance of classifier. 
 Navebyse
 code:
 data(iris)
@@ -175,7 +175,7 @@ classifier_c1 <- naiveBayes(Species ~ ., data = train_c1)
 classifier_c1
 
 
-9 CLUSTERING MODEL a. Clustering algorithms for unsupervised classification. 
+#9 CLUSTERING MODEL a. Clustering algorithms for unsupervised classification. 
 b. Plot the cluster data using R visualizations. 
 
 install.packages("plyr")
